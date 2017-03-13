@@ -18,5 +18,13 @@ class faba_icon_theme (
     package_ensure => $package_ensure,
   }
 
+  class { 'faba_icon_theme::config':
+    package_ensure => $package_ensure,
+  }
+
   contain faba_icon_theme::install
+  contain faba_icon_theme::config
+
+  Class['faba_icon_theme::install']
+    -> Class['faba_icon_theme::config']
 }

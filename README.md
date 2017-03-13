@@ -20,6 +20,7 @@ The faba_icon_theme module installs the [Faba-Mono icon theme](https://snwh.org/
 ### What faba_icon_theme affects
 
 * apt configuration to include Faba-Mono icon theme ppa
+* gsettings to configure global use of Faba-Mono icon theme
 
 ### Beginning with faba_icon_theme
 
@@ -49,11 +50,6 @@ class { 'faba_icon_theme':
 }
 ```
 
-To enable the theme for a given user:
-```puppet
-faba_icon_theme::user { 'my_user': }
-```
-
 ## Reference
 
 ### Classes
@@ -64,12 +60,9 @@ faba_icon_theme::user { 'my_user': }
 
 #### Private classes
 
+* `faba_icon_theme::config`: Handles the configuration of the theme
 * `faba_icon_theme::params`: Handles the module default parameters
 * `faba_icon_theme::install`: Handles the ppa setup and the Faba-Mono icon theme packages
-
-#### Public defined types
-
-* `faba_icon_theme::user`: Enables the Faba-Mono icon theme for a given user
 
 ### Parameters
 

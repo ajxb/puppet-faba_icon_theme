@@ -9,6 +9,7 @@ describe 'faba_icon_theme' do
 
       it { should compile.with_all_deps }
       it { should contain_class('faba_icon_theme') }
+      it { should contain_class('faba_icon_theme::config').that_requires('Class[faba_icon_theme::install]') }
       it { should contain_class('faba_icon_theme::install') }
       it { should contain_class('faba_icon_theme::params') }
     end
