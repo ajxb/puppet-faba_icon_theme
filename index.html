@@ -96,6 +96,8 @@ href="https://launchpad.net/~moka/+archive/ubuntu/daily">ppa</a> on Ubuntu.</p>
 <h3 id="label-What+faba_icon_theme+affects">What faba_icon_theme affects</h3>
 <ul><li>
 <p>apt configuration to include Faba-Mono icon theme ppa</p>
+</li><li>
+<p>gsettings to configure global use of Faba-Mono icon theme</p>
 </li></ul>
 
 <h3 id="label-Beginning+with+faba_icon_theme">Beginning with faba_icon_theme</h3>
@@ -123,9 +125,6 @@ faba-mono-icons. To use default configuration:</p>
   package_ensure =&gt; &#39;latest&#39;,
 }</code></pre>
 
-<p>To enable the theme for a given user: <code>puppet faba_icon_theme::user {
-&#39;my_user&#39;: } </code></p>
-
 <h2 id="label-Reference">Reference</h2>
 
 <h3 id="label-Classes">Classes</h3>
@@ -137,16 +136,13 @@ faba-mono-icons. To use default configuration:</p>
 
 <h4 id="label-Private+classes">Private classes</h4>
 <ul><li>
+<p><code>faba_icon_theme::config</code>: Handles the configuration of the
+theme</p>
+</li><li>
 <p><code>faba_icon_theme::params</code>: Handles the module default parameters</p>
 </li><li>
 <p><code>faba_icon_theme::install</code>: Handles the ppa setup and the
 Faba-Mono icon theme packages</p>
-</li></ul>
-
-<h4 id="label-Public+defined+types">Public defined types</h4>
-<ul><li>
-<p><code>faba_icon_theme::user</code>: Enables the Faba-Mono icon theme for a
-given user</p>
 </li></ul>
 
 <h3 id="label-Parameters">Parameters</h3>
@@ -222,7 +218,7 @@ documentation.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Mar  5 18:48:50 2017 by
+  Generated on Mon Mar 13 14:45:01 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.3.3).
 </div>
