@@ -6,15 +6,33 @@
 class faba_icon_theme::config (
     String $package_ensure = $faba_icon_theme::params::package_ensure,
 ) inherits faba_icon_theme::params {
-  if ($package_ensure == 'absent') or ($package_ensure == 'purged') {
-    gnome::gsettings { 'org.gnome.desktop.interface':
-      schema => 'org.gnome.desktop.interface',
-      key    => 'icon-theme',
-      value  => '"ubuntu-mono-dark"',
+  # Configure variables for the given desktop
+  # Defaults assume a Ubuntu installation with Gnome / Unity desktop which can
+  # be overridden using custom fact desktop.type
+  if ($facts['desktop'] != undef and $facts['desktop']['type'] != undef) {
+    case $facts['desktop']['type'] {
+      'cinnamon': {
+        $schema = 'org.cinnamon.desktop.interface'
+        $default_iconset = '"Mint-X"'
+      }
+      default:    {
+        fail("Desktop ${facts['desktop']['type']} is not supported")
+      }
     }
   } else {
-    gnome::gsettings { 'org.gnome.desktop.interface':
-      schema => 'org.gnome.desktop.interface',
+    $schema = 'org.gnome.desktop.interface'
+    $default_iconset = '"ubuntu-mono-dark"'
+  }
+
+  if ($package_ensure == 'absent') or ($package_ensure == 'purged') {
+    gnome::gsettings { 'desktop.interface_icon-theme':
+      schema => $schema,
+      key    => 'icon-theme',
+      value  => $default_iconset,
+    }
+  } else {
+    gnome::gsettings { 'desktop.interface_icon-theme':
+      schema => $schema,
       key    => 'icon-theme',
       value  => '"Faba-Mono"',
     }
