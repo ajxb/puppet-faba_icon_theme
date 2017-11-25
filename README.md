@@ -13,7 +13,7 @@
 
 ## Description
 
-The faba_icon_theme module installs the [Faba-Mono icon theme](https://snwh.org/moka) from [ppa](https://launchpad.net/~moka/+archive/ubuntu/daily) on Ubuntu.
+The faba_icon_theme module installs the [Faba-Mono icon theme](https://snwh.org/moka) from [ppa](https://launchpad.net/~moka/+archive/ubuntu/daily) on Ubuntu for both Gnome and Cinnamon based desktops.
 
 ## Setup
 
@@ -48,6 +48,12 @@ To manually configure the installation:
 class { 'faba_icon_theme':
   package_ensure => 'latest',
 }
+```
+
+To configure the Cinnamon desktop the following fact must be defined:
+```yaml
+desktop:
+  type: cinnamon
 ```
 
 ## Reference
