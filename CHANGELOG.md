@@ -1,3 +1,8 @@
+## 2017-11-25 Release 1.2.0
+### Summary :
+
+* Update to provide handling for cinnamon desktop
+
 ## 2017-03-13 Release 1.1.0
 ### Summary :
 
