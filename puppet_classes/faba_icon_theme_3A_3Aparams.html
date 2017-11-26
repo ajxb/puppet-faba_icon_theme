@@ -120,11 +120,11 @@
         <pre class="code"><span class="info file"># File 'manifests/params.pp', line 5</span>
 
 class faba_icon_theme::params {
+  $package_ensure = &#39;latest&#39;
+  $user = undef
 
   case $facts[&#39;operatingsystem&#39;] {
-    &#39;Ubuntu&#39;: {
-      $package_ensure = &#39;latest&#39;
-    }
+    &#39;Ubuntu&#39;: {}
     default: {
       fail(&quot;${facts[&#39;operatingsystem&#39;]} not supported&quot;)
     }

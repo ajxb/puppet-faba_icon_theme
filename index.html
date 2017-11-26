@@ -98,32 +98,26 @@ for both Gnome and Cinnamon based desktops.</p>
 <ul><li>
 <p>apt configuration to include Faba-Mono icon theme ppa</p>
 </li><li>
-<p>gsettings to configure global use of Faba-Mono icon theme</p>
+<p>gsettings to configure Faba-Mono icon theme for a specified user</p>
 </li></ul>
 
 <h3 id="label-Beginning+with+faba_icon_theme">Beginning with faba_icon_theme</h3>
 
-<p>To install Faba-Mono icon theme with default options:</p>
-
-<p><code>include faba_icon_theme</code></p>
-
-<p>To customize options:</p>
+<p>To install Faba-Mono icon theme:</p>
 
 <pre class="code ruby"><code class="ruby">class { &#39;faba_icon_theme&#39;:
   package_ensure =&gt; &#39;latest&#39;,
+  user           =&gt; &#39;ajxb&#39;,
 }</code></pre>
 
 <h2 id="label-Usage">Usage</h2>
 
 <p>The default faba_icon_theme class installs faba-icon-theme and
-faba-mono-icons. To use default configuration:</p>
-
-<p><code>include faba_icon_theme</code></p>
-
-<p>To manually configure the installation:</p>
+faba-mono-icons. To use:</p>
 
 <pre class="code ruby"><code class="ruby">class { &#39;faba_icon_theme&#39;:
   package_ensure =&gt; &#39;latest&#39;,
+  user           =&gt; &#39;ajxb&#39;,
 }</code></pre>
 
 <p>To configure the Cinnamon desktop the following fact must be defined:
@@ -161,6 +155,14 @@ class:</p>
 <p>Whether to install the faba-icon-theme and faba-mono-icons packages.
 Values: The same as used for the puppet package type, see <a
 href="https://docs.puppet.com/puppet/latest/type.html#package-attribute-ensure">docs.puppet.com/puppet/latest/type.html#package-attribute-ensure</a></p>
+
+<p>Default value: &#39;latest&#39;.</p>
+
+<h4 id="label-user"><code>user</code></h4>
+
+<p>Data type: String.</p>
+
+<p>The username to configure the icon theme for.</p>
 
 <p>Default value: &#39;latest&#39;.</p>
 

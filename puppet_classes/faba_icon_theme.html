@@ -97,15 +97,8 @@ Ubuntu, installing from ppa</p>
 <p>Declaring the class</p>
 </div></p>
       
-      <pre class="example code"><code><span class='id identifier rubyid_include'>include</span> <span class='id identifier rubyid_faba_icon_theme'>faba_icon_theme</span></code></pre>
-    
-      
-        <p class="example_title"><div class='inline'>
-<p>Declaring the class with parameters</p>
-</div></p>
-      
       <pre class="example code"><code>class { &#39;faba_icon_theme&#39;:
-  package_ensure =&gt; true,
+  user =&gt; &#39;theuser&#39;,
 }</code></pre>
     
   </div>
@@ -131,6 +124,24 @@ packages</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>$faba_icon_theme::params::user</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Mandatory parameter that specifies the user to configure the font for</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -141,6 +152,7 @@ packages</p>
         <pre class="lines">
 
 
+12
 13
 14
 15
@@ -158,14 +170,20 @@ packages</p>
 27
 28
 29
-30</pre>
+30
+31
+32
+33</pre>
       </td>
       <td>
-        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 13</span>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 12</span>
 
 class faba_icon_theme (
-  String  $package_ensure = $faba_icon_theme::params::package_ensure,
+  String $package_ensure = $faba_icon_theme::params::package_ensure,
+  String $user = $faba_icon_theme::params::user,
 ) inherits faba_icon_theme::params {
+  assert_type(String[1], $package_ensure)
+  assert_type(String[1], $user)
 
   class { &#39;faba_icon_theme::install&#39;:
     package_ensure =&gt; $package_ensure,
@@ -173,6 +191,7 @@ class faba_icon_theme (
 
   class { &#39;faba_icon_theme::config&#39;:
     package_ensure =&gt; $package_ensure,
+    user           =&gt; $user,
   }
 
   contain faba_icon_theme::install
