@@ -8,11 +8,16 @@ describe 'faba_icon_theme::config' do
       end
 
       context 'configure faba with defaults' do
+        let :params do
+          {
+            user: 'testuser'
+          }
+        end
         it do
           should contain_gnome__gsettings('desktop.interface_icon-theme').with(
             schema: 'org.gnome.desktop.interface',
             key:    'icon-theme',
-            value:  '"Faba-Mono"'
+            value:  '\'Faba-Mono\''
           )
         end
       end
@@ -23,11 +28,16 @@ describe 'faba_icon_theme::config' do
             desktop: { type: 'cinnamon' }
           )
         end
+        let :params do
+          {
+            user: 'testuser'
+          }
+        end
         it do
           should contain_gnome__gsettings('desktop.interface_icon-theme').with(
             schema: 'org.cinnamon.desktop.interface',
             key:    'icon-theme',
-            value:  '"Faba-Mono"'
+            value:  '\'Faba-Mono\''
           )
         end
       end
@@ -35,7 +45,8 @@ describe 'faba_icon_theme::config' do
       context 'remove faba icon theme with defaults' do
         let :params do
           {
-            package_ensure: 'absent'
+            package_ensure: 'absent',
+            user:           'testuser'
           }
         end
 
@@ -43,7 +54,7 @@ describe 'faba_icon_theme::config' do
           should contain_gnome__gsettings('desktop.interface_icon-theme').with(
             schema: 'org.gnome.desktop.interface',
             key:    'icon-theme',
-            value:  '"ubuntu-mono-dark"'
+            value:  '\'ubuntu-mono-dark\''
           )
         end
       end
@@ -56,15 +67,24 @@ describe 'faba_icon_theme::config' do
         end
         let :params do
           {
-            package_ensure: 'absent'
+            package_ensure: 'absent',
+            user:           'testuer'
           }
         end
         it do
           should contain_gnome__gsettings('desktop.interface_icon-theme').with(
             schema: 'org.cinnamon.desktop.interface',
             key:    'icon-theme',
-            value:  '"Mint-X"'
+            value:  '\'Mint-X\''
           )
+        end
+      end
+
+      context 'user param not set' do
+        it do
+          expect do
+            subject.call
+          end.to raise_error(Puppet::PreformattedError, /parameter 'user' expects a String value, got Undef/)
         end
       end
     end
