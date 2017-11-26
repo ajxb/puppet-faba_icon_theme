@@ -20,33 +20,27 @@ The faba_icon_theme module installs the [Faba-Mono icon theme](https://snwh.org/
 ### What faba_icon_theme affects
 
 * apt configuration to include Faba-Mono icon theme ppa
-* gsettings to configure global use of Faba-Mono icon theme
+* gsettings to configure Faba-Mono icon theme for a specified user
 
 ### Beginning with faba_icon_theme
 
-To install Faba-Mono icon theme with default options:
-
-`include faba_icon_theme`
-
-To customize options:
+To install Faba-Mono icon theme:
 
 ```puppet
 class { 'faba_icon_theme':
   package_ensure => 'latest',
+  user           => 'ajxb',
 }
 ```
 
 ## Usage
 
-The default faba_icon_theme class installs faba-icon-theme and faba-mono-icons. To use default configuration:
-
-`include faba_icon_theme`
-
-To manually configure the installation:
+The default faba_icon_theme class installs faba-icon-theme and faba-mono-icons. To use:
 
 ```puppet
 class { 'faba_icon_theme':
   package_ensure => 'latest',
+  user           => 'ajxb',
 }
 ```
 
@@ -79,6 +73,14 @@ The following parameters are available in the `faba_icon_theme` class:
 Data type: String.
 
 Whether to install the faba-icon-theme and faba-mono-icons packages. Values: The same as used for the puppet package type, see [https://docs.puppet.com/puppet/latest/type.html#package-attribute-ensure](https://docs.puppet.com/puppet/latest/type.html#package-attribute-ensure)
+
+Default value: 'latest'.
+
+#### `user`
+
+Data type: String.
+
+The username to configure the icon theme for.
 
 Default value: 'latest'.
 

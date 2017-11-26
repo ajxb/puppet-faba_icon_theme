@@ -1,3 +1,10 @@
+## 2017-11-26 Release 2.0.0
+### Summary :
+
+This is a breaking change, faba_icon_theme .
+
+* Updated to apply theme for specified user only
+
 ## 2017-11-25 Release 1.2.0
 ### Summary :
 
