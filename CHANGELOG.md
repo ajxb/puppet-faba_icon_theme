@@ -1,7 +1,12 @@
+## 2017-11-27 Release 2.0.1
+### Summary :
+
+* Remove dependency on camptocamp-gnome
+
 ## 2017-11-26 Release 2.0.0
 ### Summary :
 
-This is a breaking change, faba_icon_theme .
+This is a breaking change, faba_icon_theme.
 
 * Updated to apply theme for specified user only
 

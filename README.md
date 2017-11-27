@@ -22,6 +22,13 @@ The faba_icon_theme module installs the [Faba-Mono icon theme](https://snwh.org/
 * apt configuration to include Faba-Mono icon theme ppa
 * gsettings to configure Faba-Mono icon theme for a specified user
 
+### Dependencies
+
+This module has a dependency on
+[puppet-gnome](https://github.com/ajxb/puppet-gnome) which is not available on
+Puppet Forge so will need to be downloaded and installed using your preferred
+method, e.g. [librarian-puppet](http://librarian-puppet.com/)
+
 ### Beginning with faba_icon_theme
 
 To install Faba-Mono icon theme:
